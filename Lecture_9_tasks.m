@@ -38,8 +38,8 @@ A(:,3) = d;
 
 %total plant numbers 
 US_plant_total = length(data); %total number of US power plants; total = 7021
-state_plant_total = sum(a) %total number of power plants in a given state; ex NC = 224 
-source_plant_total = sum(b) %total number of power plants of a given source type; ex SUN = 587 
+state_plant_total = sum(a); %total number of power plants in a given state; ex NC = 224 
+source_plant_total = sum(b); %total number of power plants of a given source type; ex SUN = 587 
 
 
 
