@@ -7,49 +7,44 @@ state = 'NC';
 source = 'SUN';
 CF = 0.20;
 
-%creates a column vector consisting of just states that have the matching
-%text to what we've specified in our conditions
+%7a.i
+%creates a column vector consisting of just states that have the matching text
 a = strcmp(state,text(:,1));
-%this takes the sum of a (which consists of just zeros and ones) over the
-%length of the total list of power plants. yields a probability
+%probability out of all US plants that a given plant is in a given state
 state_prob = sum(a)/length(data)
-%probability a given plant out of all US plants is in a given state
 
-%probability a given plant out of all US plants is a given source
+%7a.ii
+%probability out of all US plants a given plant is of a given source
 b = strcmp(source,text(:,2)); 
 source_prob = sum(b)/length(data)
 
-%data operates independently of text
-%the third column of a matrix is not the third column of data
-%we need to operate in either data or text depending on our application
-%most likely
-
+%7a.iii
 %probability a given plant out of all US plants has CF >= specified value
 c = data(:,1) >= CF;
 CF_prob = sum(c)/length(data)
 
-%for the problem when we're interested in greater than, and not equal to
+
+%setup
+
+%probability a given plant out of all US plants has a CF > and not equal to specified value (used in problem 7b iii and 7b iv)
 d = data(:,1) > CF;
 CF_prob2 = sum(d)/length(data);
 
-%alternative to sum() is to use find()
-%c_alt = find(data(:,1)) >= CF;
-%creates a new vector with just those values satisfying CF constraint
-%CF_prob_alt = length(c_alt)/length(data);
-
-%total plant numbers
-US_plant_total = length(data); %total number of US power plants; total = 7021
-state_plant_total = sum(a); %total number of power plants in a given state; ex NC = 224 
-source_plant_total = sum(b); %total number of power plants of a given source type; ex SUN = 587 
-
-
-%%Question 7b.i%%
-%Given all solar plants in US, what is likelihood of one being in NC?
 %consolidate column vectors
 A = zeros(length(data),3);
 A(:,1) = a;
 A(:,2) = b;
 A(:,3) = d;
+
+%total plant numbers 
+US_plant_total = length(data); %total number of US power plants; total = 7021
+state_plant_total = sum(a) %total number of power plants in a given state; ex NC = 224 
+source_plant_total = sum(b) %total number of power plants of a given source type; ex SUN = 587 
+
+
+
+%%Question 7b.i%%
+%Given all solar plants in US, what is likelihood of one being in NC?
 
 %count the number of solar farms when NC is the state (conditional)
 counter_1 = 0; %starting value
@@ -65,9 +60,9 @@ prob_source_plant_is_in_state = counter_1/source_plant_total
 
 %%Question 7b.ii%%
 %count the number of NC power plants (conditional) that are also solar farms
+
 %probability a given NC power plant is a solar plant
 prob_state_power_plant_is_source = counter_1/state_plant_total
-%only difference is divide by # NC power plants this time, not # US solar plants
 
 
 %Question 7b.iii
@@ -79,7 +74,7 @@ for i = 1:length(A)
     end 
 end 
 %divide this result by the total number of US power plants
-non_conditional = counter_2/length(data)
+prob_three_conditions = counter_2/length(data)
 
 
 %Question 7b.iv
@@ -99,7 +94,7 @@ prob_given_state_and_source_is_threshold_CF_plant = counter_3/counter_1
 
 %Question 7b.v
 
-%iii is different from iv because we first specified the condition that we'd be looking
+% iii is different from iv because in iv we first specified the condition that we'd be looking
 %only at solar plants in NC, rather than at all power plants in the US.
-%This would explain why the probability is so much higher for selecting a
-%power plant given the constraints laid out
+%This would explain why the probability in iv is so much higher (14.75% vs. 0.13%) for selecting a
+%solar power plant given the constraints laid out
