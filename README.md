@@ -16,6 +16,4 @@ These included:
 6.Sensitivity analyses pertaining to historical weather and climate data
 7.Exercises in Generation Expansion, Demand-Response, Distributed Generation, and a lot of practice with data cleaning!
 
-
-
-Image Source: http://blogs.worldbank.org/ic4d/files/ic4d/ict_energyanalyticsfordevelopment.jpg
+![energy analytics](http://blogs.worldbank.org/ic4d/files/ic4d/ict_energyanalyticsfordevelopment.jpg)
