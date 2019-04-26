@@ -17,3 +17,4 @@ These included:
 7.Exercises in Generation Expansion, Demand-Response, Distributed Generation, and a lot of practice with data cleaning!
 
 ![energy analytics](http://blogs.worldbank.org/ic4d/files/ic4d/ict_energyanalyticsfordevelopment.jpg)
+Image source: World Bank (2015)
